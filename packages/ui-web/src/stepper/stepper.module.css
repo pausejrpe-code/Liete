@@ -1,0 +1,134 @@
+.root {
+  display: flex;
+  width: max-content;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--component-stepper-gap);
+}
+
+.label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-label-sm);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: var(--component-stepper-gap);
+}
+
+.button,
+.value {
+  display: grid;
+  flex: none;
+  place-items: center;
+  border-radius: var(--radius-12);
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-highlight-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-highlight-md);
+}
+
+.button {
+  padding: 0;
+  border: 0;
+  color: var(--color-action-primary-text);
+  background: var(--color-action-primary-default);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-easing-standard),
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-instant) var(--motion-easing-standard);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(var(--motion-scale-press));
+}
+
+.button:hover:not(:disabled),
+.button:active:not(:disabled) {
+  background: var(--color-action-primary-hover);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.value {
+  border: 1px solid var(--component-field-border);
+  color: var(--color-text-primary);
+  background: var(--color-background-surface-default);
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    background-color var(--motion-duration-fast) var(--motion-easing-standard),
+    border-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.sm .button {
+  width: var(--component-stepper-button-sm);
+  height: var(--component-stepper-button-sm);
+}
+
+.sm .value {
+  width: var(--component-stepper-value-width-sm);
+  height: var(--component-stepper-value-height-sm);
+}
+
+.md .button {
+  width: var(--component-stepper-button-md);
+  height: var(--component-stepper-button-md);
+}
+
+.md .value {
+  width: var(--component-stepper-value-width-md);
+  height: var(--component-stepper-value-height-md);
+}
+
+.button:disabled {
+  color: var(--color-action-disabled-text);
+  background: var(--color-action-disabled-background);
+  cursor: not-allowed;
+}
+
+.root:has(.button:disabled:first-child):has(.button:disabled:last-child) .label {
+  color: var(--color-action-disabled-text);
+}
+
+.root:has(.button:disabled:first-child):has(.button:disabled:last-child) .value {
+  border-color: var(--color-action-disabled-background);
+  color: var(--color-action-disabled-text);
+  background: var(--color-action-disabled-background);
+}
+
+@media (pointer: coarse) {
+  .button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (forced-colors: active) {
+  .button,
+  .value {
+    border: 1px solid ButtonText;
+  }
+
+  .button:disabled {
+    border-color: GrayText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .value {
+    transition-duration: var(--motion-duration-instant);
+  }
+
+  .button:active:not(:disabled) {
+    transform: none;
+  }
+}

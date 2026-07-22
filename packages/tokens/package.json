@@ -1,0 +1,21 @@
+{
+  "name": "@liete/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    "./css": "./dist/css/tokens.css",
+    "./javascript": "./dist/javascript/tokens.js",
+    "./source": "./src/tokens.json"
+  },
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.mjs",
+    "typecheck": "node --check style-dictionary.config.mjs",
+    "test": "pnpm run build"
+  },
+  "devDependencies": {
+    "style-dictionary": "5.5.0"
+  }
+}
+

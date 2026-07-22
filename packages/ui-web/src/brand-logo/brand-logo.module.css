@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  display: inline-block;
+  width: min(100%, var(--brand-logo-width, var(--component-brand-logo-width)));
+  aspect-ratio: 993 / 388;
+  flex: 0 0 auto;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.root img {
+  position: absolute;
+  display: block;
+}
+
+.root .part1 { top: 29.68%; left: 70%; width: 22.35%; height: 50.37%; }
+.root .part2 { top: 29.7%; left: 31.46%; width: 22.28%; height: 50.42%; }
+.root .part3 { top: 17.09%; left: 54.95%; width: 13.85%; height: 62.76%; }
+.root .part4 { top: 16.75%; left: 6.75%; width: 10.74%; height: 63.08%; }
+.root .part5 { top: 29.64%; left: 22.72%; width: 4.41%; height: 50.21%; }
+.root .dot1 { top: 50%; left: 69.89%; width: 3.12%; height: 7.99%; }
+.root .dot2 { top: 63.4%; left: 89.33%; width: 3.12%; height: 7.99%; }
+
+@media (forced-colors: active) {
+  .root {
+    forced-color-adjust: none;
+  }
+}

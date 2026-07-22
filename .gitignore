@@ -1,0 +1,16 @@
+node_modules/
+.pnpm-store/
+.next/
+out/
+dist/
+storybook-static/
+coverage/
+.playwright-cli/
+output/
+tmp/
+*.log
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example

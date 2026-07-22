@@ -1,0 +1,22 @@
+.root {
+  display: inline-flex;
+  width: var(--brand-icon-size, var(--component-brand-icon-size));
+  height: var(--brand-icon-size, var(--component-brand-icon-size));
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.root img {
+  display: block;
+  width: 86.2748%;
+  height: 70.6665%;
+}
+
+@media (forced-colors: active) {
+  .root {
+    forced-color-adjust: none;
+  }
+}

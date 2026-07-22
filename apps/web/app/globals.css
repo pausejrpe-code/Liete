@@ -1,0 +1,43 @@
+@import "@liete/tokens/css";
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-background-surface-default);
+}
+
+body {
+  --font-family-title: var(--font-bricolage), "Bricolage Grotesque", sans-serif;
+  --font-family-body: var(--font-source-sans), "Source Sans 3", sans-serif;
+
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-neutral-900);
+  background: var(--color-background-surface-default);
+  font-family: var(--font-family-body);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

@@ -1,0 +1,44 @@
+{
+  "name": "@liete/ui-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --project=unit",
+    "test-storybook": "vitest run --project=storybook",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@liete/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "10.5.2",
+    "@storybook/addon-docs": "10.5.2",
+    "@storybook/addon-vitest": "10.5.2",
+    "@storybook/react-vite": "10.5.2",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.3",
+    "@vitest/browser-playwright": "4.1.10",
+    "jsdom": "29.1.1",
+    "playwright": "^1.61.1",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "storybook": "10.5.2",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  }
+}

@@ -1,0 +1,169 @@
+.root {
+  display: flex;
+  width: var(--component-field-width);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--component-field-gap);
+  color: var(--component-field-text);
+  font-family: var(--font-family-body), sans-serif;
+  font-weight: var(--font-weight-regular);
+}
+
+.control {
+  display: flex;
+  width: 100%;
+  height: var(--component-field-height);
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--component-field-content-gap);
+  padding: var(--component-field-padding-block) var(--component-field-padding-inline);
+  overflow: hidden;
+  border: 1px solid var(--component-field-border);
+  border-radius: var(--component-field-radius);
+  background: var(--component-field-background);
+  cursor: text;
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-easing-standard),
+    outline-color var(--motion-duration-fast) var(--motion-easing-standard),
+    padding var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.label {
+  display: block;
+  color: var(--component-field-label);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    font-size var(--motion-duration-fast) var(--motion-easing-enter),
+    line-height var(--motion-duration-fast) var(--motion-easing-enter);
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: var(--component-field-text);
+  background: transparent;
+  font: inherit;
+  font-size: var(--font-size-label-lg);
+  line-height: var(--font-line-height-label-lg);
+  transition: opacity var(--motion-duration-fast) var(--motion-easing-enter);
+}
+
+.input::placeholder {
+  color: var(--component-field-placeholder);
+  opacity: 1;
+}
+
+.helper {
+  width: 100%;
+  color: var(--component-field-helper);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.root[data-floating="false"] .label {
+  font-size: var(--font-size-label-lg);
+  line-height: var(--font-line-height-label-lg);
+}
+
+.root[data-floating="false"] .input {
+  height: 0;
+  opacity: 0;
+}
+
+.root[data-floating="false"] .control:focus-within .label,
+.root[data-floating="false"]:has(.input:not(:placeholder-shown)) .label {
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+}
+
+.root[data-floating="false"] .control:focus-within .input,
+.root[data-floating="false"]:has(.input:not(:placeholder-shown)) .input {
+  height: auto;
+  opacity: 1;
+}
+
+.focus .control,
+.control:focus-within {
+  padding: calc(var(--component-field-padding-block) - 1px)
+    calc(var(--component-field-padding-inline) - 1px);
+  border: 2px solid var(--component-field-border-focus);
+}
+
+.control:has(.input:focus-visible) {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.focus .helper {
+  color: var(--component-field-helper-focus);
+}
+
+.error .control,
+.error .control:focus-within {
+  border-color: var(--component-field-border-error);
+  animation: field-error-nudge var(--motion-duration-normal) var(--motion-easing-enter);
+}
+
+.error .label,
+.error .input,
+.error .helper {
+  color: var(--component-field-error);
+}
+
+.disabled .control {
+  border-color: var(--component-field-border);
+  cursor: not-allowed;
+}
+
+.disabled[data-kind="text"] .control,
+.disabled[data-kind="location"] .control {
+  border-color: var(--component-field-border-disabled);
+}
+
+.disabled .label,
+.disabled .input,
+.disabled .input::placeholder,
+.disabled .helper {
+  color: var(--component-field-disabled);
+}
+
+@media (forced-colors: active) {
+  .control {
+    border-color: CanvasText;
+  }
+
+  .error .control {
+    border-color: Mark;
+  }
+
+  .disabled .control {
+    border-color: GrayText;
+  }
+}
+
+@keyframes field-error-nudge {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(calc(var(--motion-distance-small) * -1)); }
+  70% { transform: translateX(var(--motion-distance-small)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control,
+  .label,
+  .input,
+  .helper {
+    transition-duration: var(--motion-duration-instant);
+  }
+
+  .error .control,
+  .error .control:focus-within {
+    animation: none;
+  }
+}

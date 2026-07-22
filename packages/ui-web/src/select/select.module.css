@@ -1,0 +1,186 @@
+.root {
+  display: flex;
+  width: var(--component-select-width);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--component-field-gap);
+  color: var(--component-field-text);
+  font-family: var(--font-family-body), sans-serif;
+  font-weight: var(--font-weight-regular);
+}
+
+.control {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: var(--component-field-height);
+  align-items: center;
+  gap: var(--component-select-content-gap);
+  padding: var(--component-field-padding-block) var(--component-field-padding-inline);
+  overflow: hidden;
+  border: 1px solid var(--component-field-border);
+  border-radius: var(--component-field-radius);
+  background: var(--component-field-background);
+  cursor: pointer;
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-easing-standard),
+    outline-color var(--motion-duration-fast) var(--motion-easing-standard),
+    padding var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--component-field-content-gap);
+  pointer-events: none;
+}
+
+.label {
+  color: var(--component-field-text);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    font-size var(--motion-duration-fast) var(--motion-easing-enter),
+    line-height var(--motion-duration-fast) var(--motion-easing-enter);
+}
+
+.value {
+  overflow: hidden;
+  color: var(--component-field-text);
+  font-size: var(--font-size-label-lg);
+  line-height: var(--font-line-height-label-lg);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.root[data-floating="false"] .label {
+  color: var(--component-field-label);
+  font-size: var(--font-size-label-lg);
+  line-height: var(--font-line-height-label-lg);
+}
+
+.root[data-floating="false"] .value {
+  display: none;
+}
+
+.root[data-floating="false"] .control:focus-within .label {
+  color: var(--component-field-text);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+}
+
+.root[data-floating="false"] .control:focus-within .value {
+  display: block;
+}
+
+.icon {
+  display: block;
+  width: var(--component-select-icon-size);
+  height: var(--component-select-icon-size);
+  flex: 0 0 var(--component-select-icon-size);
+  pointer-events: none;
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.control:focus-within .icon {
+  transform: rotate(180deg);
+}
+
+.select {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.helper {
+  width: 100%;
+  color: var(--component-field-helper-focus);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+}
+
+.focus .control,
+.control:focus-within {
+  padding: calc(var(--component-field-padding-block) - 1px)
+    calc(var(--component-field-padding-inline) - 1px);
+  border: 2px solid var(--component-select-border-focus);
+}
+
+.control:has(.select:focus-visible) {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.error .control,
+.error .control:focus-within {
+  border-color: var(--component-field-border-error);
+  animation: select-error-nudge var(--motion-duration-normal) var(--motion-easing-enter);
+}
+
+.error .label,
+.error .value,
+.error .helper {
+  color: var(--component-field-error);
+}
+
+.disabled .control {
+  border-color: var(--component-field-border-disabled);
+  cursor: not-allowed;
+}
+
+.disabled .label,
+.disabled .value,
+.disabled .helper {
+  color: var(--component-field-disabled);
+}
+
+.disabled .select {
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .control {
+    border-color: CanvasText;
+  }
+
+  .error .control {
+    border-color: Mark;
+  }
+
+  .disabled .control {
+    border-color: GrayText;
+  }
+}
+
+@keyframes select-error-nudge {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(calc(var(--motion-distance-small) * -1)); }
+  70% { transform: translateX(var(--motion-distance-small)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control,
+  .label,
+  .icon {
+    transition-duration: var(--motion-duration-instant);
+  }
+
+  .control:focus-within .icon {
+    transform: none;
+  }
+
+  .error .control,
+  .error .control:focus-within {
+    animation: none;
+  }
+}
