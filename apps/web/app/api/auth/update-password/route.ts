@@ -1,9 +1,19 @@
 import { NextResponse } from "next/server";
 import { isSupabaseConfigured } from "../../../../lib/supabase/config";
 import { createSupabaseServerClient } from "../../../../lib/supabase/server";
+import { checkRateLimit, getClientIp } from "../../../../lib/security/rate-limit";
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    const limitCheck = checkRateLimit(`update-pwd:${ip}`, { intervalSeconds: 60, maxRequests: 5 });
+    if (!limitCheck.success) {
+      return NextResponse.json(
+        { error: "Muitas tentativas de alteração de senha. Aguarde 1 minuto antes de tentar novamente." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { password } = body;
 
