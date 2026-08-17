@@ -122,7 +122,7 @@ export async function getOrganizerFinanceSummary(organizerId: string): Promise<O
 
     const { data: orders } = await supabase
       .from("orders")
-      .select("excursion_id, total_amount, quantity, payment_status")
+      .select("created_at, excursion_id, total_amount, quantity, payment_status")
       .eq("organizer_id", organizerId)
       .eq("payment_status", "paid");
 
@@ -134,6 +134,27 @@ export async function getOrganizerFinanceSummary(organizerId: string): Promise<O
     const occupancy = Math.min(100, Math.round((soldSeats / Math.max(1, totalCapacity)) * 100));
     const firstPayout = totalGross * 0.7;
     const retained = totalGross * 0.3;
+
+    // Build real time series buckets (4 weeks)
+    const now = Date.now();
+    const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
+    const weekBuckets = [
+      { gross: 0, label: "Sem 1", net: 0 },
+      { gross: 0, label: "Sem 2", net: 0 },
+      { gross: 0, label: "Sem 3", net: 0 },
+      { gross: 0, label: "Sem 4", net: 0 }
+    ];
+
+    if (orders && orders.length > 0) {
+      for (const order of orders) {
+        const orderDate = new Date(order.created_at || now).getTime();
+        const diffWeeks = Math.floor((now - orderDate) / oneWeekMs);
+        const bucketIndex = Math.min(3, Math.max(0, 3 - diffWeeks));
+        const amount = Number(order.total_amount) || 0;
+        weekBuckets[bucketIndex].gross += amount;
+        weekBuckets[bucketIndex].net += Math.round(amount * 0.82);
+      }
+    }
 
     const dynamicRecords = (excursions || []).map((exc) => {
       const excOrders = (orders || []).filter((o) => o.excursion_id === exc.id);
@@ -162,12 +183,7 @@ export async function getOrganizerFinanceSummary(organizerId: string): Promise<O
     return {
       activeExcursionsCount: activeCount,
       averageOccupancy: occupancy,
-      flowByPeriod: [
-        { gross: Math.round(totalGross * 0.2), label: "Sem 1", net: Math.round(totalGross * 0.18) },
-        { gross: Math.round(totalGross * 0.25), label: "Sem 2", net: Math.round(totalGross * 0.22) },
-        { gross: Math.round(totalGross * 0.25), label: "Sem 3", net: Math.round(totalGross * 0.22) },
-        { gross: Math.round(totalGross * 0.3), label: "Sem 4", net: Math.round(totalGross * 0.27) }
-      ],
+      flowByPeriod: weekBuckets,
       metrics: {
         activeExcursionsCount: activeCount,
         grossVolume: totalGross,

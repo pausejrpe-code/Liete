@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isSupabaseConfigured, getSupabasePublicConfig } from "../../../../lib/supabase/config";
+import { isSupabaseConfigured } from "../../../../lib/supabase/config";
 import { createSupabaseServerClient } from "../../../../lib/supabase/server";
 import { checkRateLimit, getClientIp } from "../../../../lib/security/rate-limit";
 
@@ -39,56 +39,19 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createSupabaseServerClient();
-    let authRes = await supabase.auth.signInWithPassword({
+    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
       email: normalizedEmail,
       password
     });
 
-    // Se o Supabase reclamar que o e-mail não foi confirmado, auto-confirmamos na hora via Admin API
-    if (authRes.error && (authRes.error.message.includes("Email not confirmed") || authRes.error.message.includes("not confirmed"))) {
-      const { url } = getSupabasePublicConfig();
-      const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-      if (serviceRoleKey) {
-        // Busca o ID do usuário pelo e-mail
-        const usersRes = await fetch(`${url}/auth/v1/admin/users`, {
-          headers: {
-            "apikey": serviceRoleKey,
-            "Authorization": `Bearer ${serviceRoleKey}`
-          }
-        });
-        const usersData = await usersRes.json();
-        const foundUser = usersData.users?.find((u: any) => u.email === normalizedEmail);
-
-        if (foundUser?.id) {
-          // Confirma o e-mail
-          await fetch(`${url}/auth/v1/admin/users/${foundUser.id}`, {
-            method: "PUT",
-            headers: {
-              "apikey": serviceRoleKey,
-              "Authorization": `Bearer ${serviceRoleKey}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email_confirm: true })
-          });
-
-          // Tenta logar novamente
-          authRes = await supabase.auth.signInWithPassword({
-            email: normalizedEmail,
-            password
-          });
-        }
-      }
-    }
-
-    if (authRes.error) {
+    if (authError) {
       return NextResponse.json(
         { error: "E-mail ou senha incorretos. Verifique suas credenciais." },
         { status: 401 }
       );
     }
 
-    if (!authRes.data.user) {
+    if (!authData.user) {
       return NextResponse.json(
         { error: "Não foi possível autenticar o usuário." },
         { status: 401 }
@@ -99,12 +62,12 @@ export async function POST(request: Request) {
     const { data: profile } = await supabase
       .from("profiles")
       .select("*")
-      .eq("id", authRes.data.user.id)
+      .eq("id", authData.user.id)
       .single();
 
     return NextResponse.json({
       profile,
-      user: authRes.data.user
+      user: authData.user
     });
   } catch (err: any) {
     return NextResponse.json(
