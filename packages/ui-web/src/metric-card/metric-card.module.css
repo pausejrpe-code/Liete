@@ -1,0 +1,134 @@
+.root {
+  display: flex;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: var(--radius-12);
+  background: var(--color-background-surface-muted);
+}
+
+.regular {
+  width: var(--component-metric-card-width-regular);
+  gap: var(--spacing-12);
+  padding: var(--spacing-24);
+}
+
+.compact {
+  width: var(--component-metric-card-width-compact);
+  gap: var(--spacing-8);
+  padding: var(--spacing-16);
+}
+
+.header,
+.metric {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  min-height: 24px;
+}
+
+.metric {
+  gap: var(--spacing-8);
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-label-md);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compact .header {
+  overflow: hidden;
+}
+
+.compact .label {
+  flex: 0 0 auto;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.value {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-title), sans-serif;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-default);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.regular .value {
+  font-size: var(--font-size-price-lg);
+  line-height: var(--font-line-height-price-lg);
+}
+
+.compact .value {
+  font-size: var(--font-size-highlight-lg);
+  line-height: var(--font-line-height-highlight-lg);
+}
+
+.trend {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--spacing-4);
+  color: var(--color-status-confirmed-text);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-body-sm);
+}
+
+.compact.neutral .trend {
+  color: var(--color-status-pending-text);
+}
+
+.trendIcon {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+}
+
+.trendIcon img {
+  display: block;
+  width: 20px;
+  height: 12px;
+}
+
+.supporting {
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-body-sm);
+  overflow-wrap: anywhere;
+}
+
+.positive .supporting {
+  color: var(--color-status-confirmed-text);
+}
+
+.warning .supporting {
+  color: var(--color-status-pending-text);
+}
+
+@media (forced-colors: active) {
+  .root {
+    border: 1px solid CanvasText;
+  }
+}

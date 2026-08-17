@@ -31,9 +31,10 @@ Altura de 60 px, largura-base de 200 px, raio de 12 px e padding 8/12. A classe 
 | `errorMessage` | `string` | — | Ativa erro semântico quando `state` não foi forçado |
 | `state` | `FormFieldState` | Inferido | Permite documentar as variantes do Figma |
 | `hideHelperText` | `boolean` | `false` | Oculta o helper sem remover a label |
+| `inputType` | `email \| password \| tel \| text` | `text` | Preserva o tipo nativo sem alterar a anatomia do campo |
 | `disabled` | `boolean` | `false` | Desabilita o input nativo |
 
-As demais propriedades nativas de `<input>`, exceto `type` e `size`, são aceitas.
+As demais propriedades nativas de `<input>`, exceto `type` e `size`, são aceitas. Use `inputType` para escolher um tipo nativo suportado.
 
 ## States
 

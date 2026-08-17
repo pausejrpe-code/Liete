@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SDD Feature Specification Schema",
+  "type": "object",
+  "required": ["id", "title", "status", "stage"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^FEAT-\\d{3}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "module": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "SPECIFICATION",
+        "DESIGN",
+        "PLANNING",
+        "IMPLEMENTATION",
+        "TESTING",
+        "VERIFICATION",
+        "COMPLETE"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["IN_PROGRESS", "BLOCKED", "COMPLETE"]
+    },
+    "compliancePct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

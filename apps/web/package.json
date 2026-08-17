@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "test": "pnpm run typecheck"
+    "test": "tsc --noEmit && node --test app/_auth/brazilian-document.test.cjs app/organizador/excursoes/nova/excursion-draft.test.cjs"
   },
   "dependencies": {
     "@liete/tokens": "workspace:*",

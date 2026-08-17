@@ -17,6 +17,7 @@ type BaseFieldProps = NativeInputProps & {
   errorMessage?: string;
   helperText?: string;
   hideHelperText?: boolean;
+  inputType?: "email" | "password" | "tel" | "text";
   kind: FieldKind;
   label: string;
   state?: FormFieldState;
@@ -37,6 +38,7 @@ const BaseField = forwardRef<HTMLInputElement, BaseFieldProps>(
       helperText = "Obrigatório",
       hideHelperText = false,
       id,
+      inputType = "text",
       kind,
       label,
       placeholder,
@@ -91,7 +93,7 @@ const BaseField = forwardRef<HTMLInputElement, BaseFieldProps>(
             disabled={isDisabled}
             id={inputId}
             placeholder={placeholder ?? (kind === "text" || kind === "location" ? " " : undefined)}
-            type="text"
+            type={inputType}
             value={value}
           />
         </label>
@@ -109,6 +111,7 @@ const BaseField = forwardRef<HTMLInputElement, BaseFieldProps>(
 BaseField.displayName = "BaseField";
 
 export type InputProps = Omit<BaseFieldProps, "kind" | "label"> & {
+  inputType?: "email" | "password" | "tel" | "text";
   kind?: InputKind;
   label?: string;
 };

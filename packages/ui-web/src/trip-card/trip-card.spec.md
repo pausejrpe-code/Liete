@@ -6,7 +6,7 @@ Apresentar uma caravana ou passeio para descoberta e permitir a reserva quando h
 
 ## Variants and API
 
-`layout` aceita `vertical` e `compact`; `availability` aceita `available` e `sold-out`. Título, mídia, saída, organizador, vagas, verificação, avaliação, participantes e preço são configuráveis.
+`layout` aceita `vertical` e `compact`; `availability` aceita `available` e `sold-out`. Título, mídia, saída, organizador, vagas, verificação, avaliação, participantes, preço e `actionLabel` são configuráveis.
 
 ## Behavior and accessibility
 

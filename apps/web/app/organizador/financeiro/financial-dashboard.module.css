@@ -1,0 +1,470 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-background-surface-muted);
+}
+
+.shell {
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  margin-inline: auto;
+}
+
+.shell [aria-label="Painel financeiro"][data-has-content] {
+  min-height: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.dashboard {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+.filtersCard,
+.chartCard,
+.recordsCard {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-12);
+  background: var(--color-background-surface-default);
+}
+
+.filtersCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-24);
+  padding: var(--spacing-16) var(--spacing-24);
+}
+
+.filtersCard h2,
+.filtersCard p,
+.chartHeader h2,
+.chartHeader p,
+.recordsHeader h2,
+.recordsHeader p {
+  margin: 0;
+}
+
+.filtersCard h2,
+.chartHeader h2,
+.recordsHeader h2 {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-title-lg);
+}
+
+.filtersCard p,
+.chartHeader p,
+.recordsHeader p {
+  margin-top: var(--spacing-4);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--font-line-height-body-sm);
+}
+
+.filterControls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--spacing-12);
+}
+
+.filter {
+  width: 220px;
+  max-width: 100%;
+}
+
+.metricsGrid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-16);
+}
+
+.metricCard {
+  width: 100%;
+  max-width: none;
+}
+
+.insightsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  align-items: stretch;
+  gap: var(--spacing-16);
+}
+
+.chartCard {
+  min-width: 0;
+  margin: 0;
+  padding: var(--spacing-24);
+}
+
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--spacing-12);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-label-sm);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  white-space: nowrap;
+}
+
+.legend i {
+  display: inline-block;
+  width: 20px;
+  height: 3px;
+  border-radius: var(--radius-full);
+}
+
+.grossLegend {
+  background: var(--color-text-primary);
+}
+
+.netLegend {
+  background: var(--color-action-primary-default);
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--spacing-16);
+  overflow: visible;
+}
+
+.gridLine {
+  stroke: var(--color-border-default);
+  stroke-width: 1;
+}
+
+.grossLine,
+.netLine {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.grossLine {
+  stroke: var(--color-text-primary);
+}
+
+.netLine {
+  stroke: var(--color-action-primary-default);
+}
+
+.grossPoint {
+  fill: var(--color-text-primary);
+}
+
+.netPoint {
+  fill: var(--color-action-primary-default);
+}
+
+.axisLabel {
+  fill: var(--color-text-muted);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: 11px;
+}
+
+.nextPayout {
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+  border-color: var(--color-border-default);
+}
+
+.recordsCard {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  padding: var(--spacing-24);
+}
+
+.recordsHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.desktopRecords {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-8);
+}
+
+.recordsTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.recordsTable th,
+.recordsTable td {
+  min-width: 0;
+  padding: var(--spacing-12);
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recordsTable th {
+  color: var(--color-text-secondary);
+  background: var(--color-background-surface-muted);
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.recordsTable td {
+  height: 64px;
+  border-top: 1px solid var(--color-border-default);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body-sm);
+}
+
+.recordsTable th:first-child {
+  width: 20%;
+}
+
+.recordsTable td:first-child strong,
+.recordsTable td:first-child span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recordsTable td:first-child span {
+  margin-top: var(--spacing-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-label-sm);
+}
+
+.mobileRecords {
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  list-style: none;
+}
+
+.recordCard {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  padding: var(--spacing-16);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface-default);
+}
+
+.recordCardHeader {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+}
+
+.recordCardHeader > div {
+  min-width: 0;
+}
+
+.recordCardHeader strong,
+.recordCardHeader span {
+  display: block;
+}
+
+.recordCardHeader strong {
+  overflow: hidden;
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-md);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recordCardHeader span {
+  margin-top: var(--spacing-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-label-sm);
+}
+
+.recordCard dl {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.recordCard dl > div,
+.detailsList > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.recordCard dt,
+.recordCard dd,
+.detailsList dt,
+.detailsList dd {
+  margin: 0;
+}
+
+.recordCard dt,
+.detailsList dt {
+  color: var(--color-text-secondary);
+}
+
+.recordCard dd,
+.detailsList dd {
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.pagination,
+.emptyState {
+  width: 100%;
+  max-width: none;
+}
+
+.detailsList {
+  display: flex;
+  margin: var(--spacing-8) 0 0;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+.detailsTotal {
+  padding-top: var(--spacing-12);
+  border-top: 1px solid var(--color-border-default);
+  font-weight: var(--font-weight-semibold);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1180px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insightsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .desktopRecords {
+    display: none;
+  }
+
+  .mobileRecords {
+    display: flex;
+  }
+}
+
+@media (max-width: 680px) {
+  .dashboard {
+    gap: var(--spacing-16);
+  }
+
+  .filtersCard,
+  .chartHeader,
+  .recordsHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .filtersCard,
+  .chartCard,
+  .recordsCard {
+    padding: var(--spacing-16);
+  }
+
+  .filterControls {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .filter {
+    width: 100%;
+  }
+
+  .metricsGrid {
+    gap: var(--spacing-12);
+  }
+
+  .legend {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 359px) {
+  .metricsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .recordCardHeader,
+  .recordCard dl > div,
+  .detailsList > div {
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .recordCard dd,
+  .detailsList dd {
+    text-align: left;
+  }
+}
+
+@media (forced-colors: active) {
+  .grossLine,
+  .netLine,
+  .gridLine {
+    stroke: CanvasText;
+  }
+
+  .grossPoint,
+  .netPoint {
+    fill: CanvasText;
+  }
+}

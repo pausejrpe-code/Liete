@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  width: min(100%, var(--component-journey-navigation-width));
+  min-height: var(--component-journey-navigation-min-height);
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: var(--spacing-24);
+  padding: var(--spacing-16);
+  background: var(--color-background-surface-default);
+}
+
+.primaryAction {
+  width: var(--component-journey-navigation-primary-width);
+  flex: 0 0 var(--component-journey-navigation-primary-width);
+}
+
+.backAction {
+  flex: 0 0 auto;
+}
+
+.sticky {
+  position: sticky;
+  z-index: 15;
+  bottom: 0;
+  box-shadow: 0 -1px 0 var(--color-border-default);
+}
+
+@media (max-width: 359px) {
+  .root {
+    gap: var(--spacing-8);
+  }
+
+  .primaryAction,
+  .backAction {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .primaryAction {
+    width: auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .sticky {
+    border-top: 1px solid CanvasText;
+    box-shadow: none;
+  }
+}

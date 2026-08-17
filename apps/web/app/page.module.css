@@ -32,83 +32,12 @@
   transform: translateY(0);
 }
 
-.siteHeader {
-  position: sticky;
-  z-index: 20;
-  top: 0;
-  display: grid;
-  min-height: var(--home-header-height);
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: var(--spacing-24);
-  padding: var(--spacing-16) var(--spacing-32, 32px);
-  background: var(--color-background-surface-default);
-}
-
-.logoLink {
-  display: inline-flex;
-  width: 82px;
-  border-radius: var(--radius-8);
-}
-
-.logoLink:focus-visible,
-.siteHeader a:focus-visible,
 .sectionHeading a:focus-visible,
 .destinationCard:focus-visible,
 .footer a:focus-visible,
 .newsletter :is(input, button):focus-visible {
   outline: 3px solid var(--color-border-focus);
   outline-offset: 3px;
-}
-
-.primaryNav,
-.accountActions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-16);
-}
-
-.accountActions {
-  justify-self: end;
-}
-
-.siteHeader a {
-  color: var(--color-text-primary);
-  font-family: var(--font-family-title);
-  font-size: var(--font-size-title-sm);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--font-line-height-title-sm);
-  text-decoration: none;
-}
-
-.primaryNav a,
-.registerLink {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  padding-inline: var(--spacing-16);
-  border-radius: var(--radius-12);
-}
-
-.primaryNav a:hover,
-.registerLink:hover {
-  background: var(--color-background-surface-subtle);
-}
-
-.loginLink {
-  display: inline-flex;
-  min-width: 131px;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  padding-inline: var(--spacing-16);
-  border: 1px solid var(--color-action-primary-default);
-  border-radius: var(--radius-12);
-  background: var(--color-action-primary-default);
-}
-
-.loginLink:hover {
-  background: var(--color-action-primary-hover);
 }
 
 .hero {
@@ -526,18 +455,6 @@
 }
 
 @media (max-width: 1040px) {
-  .siteHeader {
-    grid-template-columns: auto 1fr;
-  }
-
-  .primaryNav {
-    display: none;
-  }
-
-  .accountActions {
-    justify-self: end;
-  }
-
   .organizerGrid,
   .tripGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -569,18 +486,6 @@
 
   .container {
     width: min(100% - 32px, 520px);
-  }
-
-  .siteHeader {
-    padding: var(--spacing-12) var(--spacing-16);
-  }
-
-  .registerLink {
-    display: none;
-  }
-
-  .loginLink {
-    min-width: 96px;
   }
 
   .hero {

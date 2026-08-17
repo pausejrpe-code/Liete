@@ -3,10 +3,6 @@
 import { BannerHero, PartnerHero, TripCard, type TripCardProps } from "@liete/ui-web";
 import { withBasePath } from "../lib/site-path";
 
-function focusSearch() {
-  document.getElementById("buscar")?.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
 export function HomePartnerHero() {
   function handleAction() {
     document.getElementById("rodape")?.scrollIntoView({ behavior: "smooth" });
@@ -28,11 +24,19 @@ export function HomeBannerHero() {
       headingLevel={2}
       imageAlt="Montanhas acima de um campo florido"
       imageSrc={withBasePath("/home/cta-mountains.jpeg")}
-      onAction={focusSearch}
+      onAction={() => window.location.assign(withBasePath("/excursoes/"))}
     />
   );
 }
 
-export function HomeTripCard(props: TripCardProps) {
-  return <TripCard {...props} onReserve={focusSearch} />;
+export function HomeTripCard({ slug, ...props }: TripCardProps & { slug: string }) {
+  return (
+    <TripCard
+      {...props}
+      actionLabel="Ver detalhes"
+      onReserve={() =>
+        window.location.assign(withBasePath(`/excursoes/${slug}/`))
+      }
+    />
+  );
 }

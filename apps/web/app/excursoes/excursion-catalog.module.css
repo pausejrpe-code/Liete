@@ -1,0 +1,217 @@
+.pageContent {
+  width: min(100% - 32px, 1200px);
+  margin-inline: auto;
+  padding-block: var(--spacing-32);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+  align-items: end;
+  gap: var(--spacing-32);
+  padding: var(--spacing-32);
+  border-radius: var(--radius-12);
+  color: var(--color-text-primary);
+  background: var(--color-background-surface-default);
+}
+
+.hero span {
+  color: var(--color-action-primary-default);
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.hero h1,
+.hero p,
+.filterHeader h2,
+.filterHeader p,
+.resultsHeader h2,
+.resultsHeader p {
+  margin: 0;
+}
+
+.hero h1 {
+  max-width: 620px;
+  margin-top: var(--spacing-4);
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-xl);
+  line-height: var(--font-line-height-title-xl);
+}
+
+.hero p {
+  max-width: 600px;
+  margin-top: var(--spacing-8);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-md);
+}
+
+.search {
+  width: 100%;
+  max-width: none;
+}
+
+.catalogLayout {
+  display: grid;
+  margin-top: var(--spacing-24);
+  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--spacing-24);
+}
+
+.filters,
+.results {
+  min-width: 0;
+}
+
+.filters {
+  position: sticky;
+  top: 96px;
+  padding: var(--spacing-20, 20px);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-12);
+  background: var(--color-background-surface-default);
+}
+
+.filterHeader,
+.resultsHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.filterHeader h2,
+.resultsHeader h2 {
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-lg);
+  line-height: var(--font-line-height-title-lg);
+}
+
+.filterHeader p,
+.resultsHeader p {
+  margin-top: var(--spacing-4);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+
+.filterFields {
+  display: flex;
+  margin-top: var(--spacing-20, 20px);
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+.filterFields > * {
+  width: 100%;
+}
+
+.applyFilters {
+  display: none;
+  width: 100%;
+  margin-top: var(--spacing-16);
+}
+
+.sort {
+  width: 220px;
+  max-width: 100%;
+}
+
+.tripGrid {
+  display: grid;
+  margin-top: var(--spacing-20, 20px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-16);
+}
+
+.tripGrid > * {
+  width: 100%;
+  max-width: none;
+}
+
+.pagination,
+.emptyState {
+  width: 100%;
+  max-width: none;
+  margin-top: var(--spacing-24);
+}
+
+.mobileFilterBar {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .catalogLayout {
+    grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
+  }
+
+  .tripGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .pageContent {
+    padding-block: var(--spacing-16);
+  }
+
+  .hero {
+    gap: var(--spacing-20, 20px);
+    padding: var(--spacing-20, 20px);
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-title-xl);
+    line-height: var(--font-line-height-title-xl);
+  }
+
+  .mobileFilterBar {
+    display: flex;
+    margin-top: var(--spacing-16);
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-12);
+  }
+
+  .mobileFilterBar span {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+  }
+
+  .catalogLayout {
+    margin-top: var(--spacing-16);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .filters {
+    position: static;
+    display: none;
+  }
+
+  .filters[data-open] {
+    display: block;
+  }
+
+  .applyFilters {
+    display: inline-flex;
+  }
+
+  .resultsHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sort {
+    width: 100%;
+  }
+}
+
+@media (max-width: 359px) {
+  .pageContent {
+    width: min(100% - 24px, 1200px);
+  }
+}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { BrandLogo } from "@liete/ui-web";
 import { withBasePath } from "../lib/site-path";
+import { PublicHeader } from "./_traveler/public-header";
 import { HomeBannerHero, HomePartnerHero, HomeTripCard } from "./home-actions";
 import { HomeSearch } from "./home-search";
 import styles from "./page.module.css";
@@ -54,36 +55,44 @@ const destinations = [
 const trips = [
   {
     image: withBasePath("/home/trip-sakura.jpeg"),
+    slug: "holambra-festival-flores",
     title: "Holambra e o festival das flores",
     departure: "Saída: São Paulo · 24 ago · 06:00",
     organizer: "Organizado por Rota Serra Turismo"
   },
   {
     image: withBasePath("/home/trip-desert.png"),
+    slug: "lencois-maranhenses",
     title: "Dunas e lagoas dos Lençóis",
     departure: "Saída: São Luís · 7 set · 05:30",
     organizer: "Organizado por Viva Trip"
   },
   {
     image: withBasePath("/home/trip-coast.png"),
+    slug: "arraial-do-cabo",
     title: "Arraial do Cabo bate-volta",
     departure: "Saída: Rio de Janeiro · 14 set · 06:00",
     organizer: "Organizado por Trilha Viva"
   },
   {
     image: withBasePath("/home/trip-mountains.jpeg"),
+    slug: "serra-da-canastra",
     title: "Serra e cachoeiras de Minas",
     departure: "Saída: Belo Horizonte · 21 set · 06:30",
     organizer: "Organizado por Bora Tour"
   }
 ] as const;
 
+import { getPublishedExcursions } from "../lib/db/excursions";
+
 function SectionHeading({
   description,
+  href,
   id,
   title
 }: {
   description: string;
+  href: string;
   id: string;
   title: string;
 }) {
@@ -93,32 +102,41 @@ function SectionHeading({
         <h2 id={id}>{title}</h2>
         <p>{description}</p>
       </div>
-      <a href={`#${id}`}>Ver todos <span aria-hidden="true">→</span></a>
+      <a href={href}>Ver todos <span aria-hidden="true">→</span></a>
     </div>
   );
 }
 
-export default function HomePage() {
+type TripItem = {
+  departure: string;
+  image: string;
+  organizer: string;
+  slug: string;
+  title: string;
+};
+
+export default async function HomePage() {
+  let dynamicTrips: TripItem[] = [...trips];
+  try {
+    const records = await getPublishedExcursions({ limit: 4 });
+    if (records && records.length > 0) {
+      dynamicTrips = records.map((r, i) => ({
+        departure: `Saída: ${r.departure_city} · ${r.date}`,
+        image: r.image_url || trips[i % trips.length]!.image,
+        organizer: "Organizador parceiro",
+        slug: r.slug,
+        title: r.title
+      }));
+    }
+  } catch {
+    // Safe fallback
+  }
+
   return (
     <div className={styles.page}>
       <a className={styles.skipLink} href="#conteudo-principal">Pular para o conteúdo</a>
 
-      <header className={styles.siteHeader}>
-        <a aria-label="Liete — página inicial" className={styles.logoLink} href="#inicio">
-          <BrandLogo decorative width={82} />
-        </a>
-
-        <nav aria-label="Navegação principal" className={styles.primaryNav}>
-          <a href="#destinos">Descobrir</a>
-          <a href="#organizadores">Como funciona</a>
-          <a href="#organizadores">Para organizadores</a>
-        </nav>
-
-        <div className={styles.accountActions}>
-          <a className={styles.registerLink} href="#organizadores">Cadastrar</a>
-          <a className={styles.loginLink} href="#buscar">Entrar</a>
-        </div>
-      </header>
+      <PublicHeader home />
 
       <main id="conteudo-principal">
         <section aria-labelledby="hero-title" className={styles.hero} id="inicio">
@@ -175,6 +193,7 @@ export default function HomePage() {
         >
           <SectionHeading
             description="Organizadores mais ativos da plataforma"
+            href="#organizadores"
             id="organizadores-title"
             title="Organizadores favoritos"
           />
@@ -206,6 +225,7 @@ export default function HomePage() {
         >
           <SectionHeading
             description="Os mais buscados desta semana"
+            href={withBasePath("/excursoes/")}
             id="destinos-title"
             title="Destinos populares"
           />
@@ -214,7 +234,7 @@ export default function HomePage() {
               <a
                 aria-label={`Explorar ${destination.name}, ${destination.region}`}
                 className={styles.destinationCard}
-                href={`${withBasePath("/")}?destination=${encodeURIComponent(destination.name)}#viagens`}
+                href={`${withBasePath("/excursoes/")}?destination=${encodeURIComponent(destination.name)}`}
                 key={destination.name}
               >
                 <Image
@@ -241,11 +261,12 @@ export default function HomePage() {
         >
           <SectionHeading
             description="Viagens confiáveis criadas por especialistas"
+            href={withBasePath("/excursoes/")}
             id="viagens-title"
             title="Viagens imperdíveis"
           />
           <div className={styles.tripGrid}>
-            {trips.map((trip, index) => (
+            {dynamicTrips.map((trip, index) => (
               <HomeTripCard
                 imageAlt={`Paisagem da viagem ${trip.title}`}
                 imageSrc={trip.image}
@@ -253,6 +274,7 @@ export default function HomePage() {
                 organizer={trip.organizer}
                 participantCount={32 + index * 7}
                 seats={8 + index * 2}
+                slug={trip.slug}
                 title={trip.title}
                 departure={trip.departure}
               />
@@ -281,9 +303,9 @@ export default function HomePage() {
 
           <div className={styles.footerColumn}>
             <h2>Para viajantes</h2>
-            <a href="#destinos">Explorar destinos</a>
+            <a href={withBasePath("/excursoes/")}>Explorar destinos</a>
             <a href="#viagens">Como funciona</a>
-            <a href="#buscar">Buscar viagens</a>
+            <a href={withBasePath("/excursoes/")}>Buscar viagens</a>
           </div>
 
           <div className={styles.footerColumn}>

@@ -14,3 +14,5 @@ tmp/
 .env
 .env.*
 !.env.example
+*-validation.png
+dsb-state-*.json

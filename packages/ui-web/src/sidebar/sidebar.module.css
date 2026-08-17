@@ -1,0 +1,173 @@
+.root {
+  display: flex;
+  width: max-content;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16);
+  overflow: hidden;
+  border-right: 1px solid var(--color-neutral-200);
+  color: var(--color-text-muted);
+  background: var(--color-background-surface-default);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-label-lg);
+}
+
+.collapsed,
+.expanded {
+  height: var(--component-sidebar-height-desktop);
+}
+
+.collapsed {
+  width: var(--component-sidebar-width-desktop-collapsed);
+}
+
+.expanded {
+  width: var(--component-sidebar-width-desktop-expanded);
+}
+
+.mobile,
+.mobileBar {
+  width: min(100%, var(--component-sidebar-width-mobile));
+}
+
+.mobile {
+  height: var(--component-sidebar-height-mobile);
+}
+
+.list {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-16);
+  list-style: none;
+}
+
+.item {
+  width: max-content;
+  max-width: 100%;
+}
+
+.itemControl {
+  display: flex;
+  width: 100%;
+  min-width: 40px;
+  min-height: 40px;
+  box-sizing: border-box;
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-4);
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.itemContent {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: var(--spacing-8);
+}
+
+.active .itemControl {
+  color: var(--color-text-primary);
+  background: var(--color-background-surface-muted);
+}
+
+.active .itemContent {
+  padding-left: 0;
+}
+
+.indicator {
+  width: var(--component-sidebar-active-indicator-width);
+  flex: 0 0 auto;
+  align-self: stretch;
+  background: var(--color-action-primary-default);
+}
+
+.active .indicator + .itemContent {
+  margin-left: var(--spacing-6);
+  padding-right: var(--spacing-8);
+}
+
+.icon {
+  display: flex;
+  width: var(--component-sidebar-icon-size);
+  height: var(--component-sidebar-icon-size);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.glyph {
+  display: block;
+  width: var(--sidebar-glyph-size);
+  height: var(--sidebar-glyph-size);
+  background: currentColor;
+  mask: var(--sidebar-icon) center / contain no-repeat;
+}
+
+.itemLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collapsed .itemContent {
+  gap: var(--spacing-16);
+}
+
+.mobileBar .list,
+.mobileBar .item {
+  width: 100%;
+}
+
+@media (hover: hover) {
+  .itemControl:hover {
+    color: var(--color-text-primary);
+    background: var(--color-background-surface-muted);
+  }
+}
+
+.itemControl:active {
+  color: var(--color-action-ghost-hover);
+}
+
+.itemControl:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .itemControl {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (forced-colors: active) {
+  .root {
+    border-color: CanvasText;
+  }
+
+  .indicator {
+    background: Highlight;
+  }
+
+  .itemControl:focus-visible {
+    outline-color: Highlight;
+  }
+}

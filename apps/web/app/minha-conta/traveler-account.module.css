@@ -1,0 +1,16 @@
+.pageContent { width: min(100% - 32px,900px); margin-inline: auto; padding-block: var(--spacing-32) var(--spacing-48); }
+.header { display: flex; align-items: center; gap: var(--spacing-16); margin-bottom: var(--spacing-24); }
+.header span { color: var(--color-action-primary-default); font-size: var(--font-size-label-sm); font-weight: var(--font-weight-semibold); }
+.header h1, .header p, .sectionHeader h2, .sectionHeader p { margin: 0; }
+.header h1 { margin-top: var(--spacing-2); font-family: var(--font-family-title),sans-serif; font-size: var(--font-size-title-xl); }
+.header p, .sectionHeader p { margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+.layout { display: flex; margin-top: var(--spacing-16); flex-direction: column; gap: var(--spacing-16); }
+.tabs { width: 100%; max-width: none; }
+.card { padding: var(--spacing-24); border: 1px solid var(--color-border-default); border-radius: var(--radius-12); background: var(--color-background-surface-default); }
+.sectionHeader h2 { font-family: var(--font-family-title),sans-serif; font-size: var(--font-size-title-lg); }
+.formGrid { display: grid; margin-top: var(--spacing-24); grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--spacing-16); }
+.securityForm { display: flex; width: min(100%,520px); margin-top: var(--spacing-24); flex-direction: column; gap: var(--spacing-16); }
+.notifications { display: flex; margin: var(--spacing-24) 0 0; padding: var(--spacing-20,20px); flex-direction: column; gap: var(--spacing-16); border: 1px solid var(--color-border-default); border-radius: var(--radius-8); }
+.notifications legend { padding-inline: var(--spacing-6); font-family: var(--font-family-title),sans-serif; font-weight: var(--font-weight-semibold); }
+.actions { display: flex; margin-top: var(--spacing-24); justify-content: flex-end; padding-top: var(--spacing-16); border-top: 1px solid var(--color-border-default); }
+@media (max-width: 620px) { .pageContent { padding-block: var(--spacing-20,20px); } .header { align-items: flex-start; } .card { padding: var(--spacing-16); } .formGrid { grid-template-columns: minmax(0,1fr); } .actions, .actions button { width: 100%; } }

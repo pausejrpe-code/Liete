@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { AuthProvider } from "../lib/auth-context";
 import "./globals.css";
 
 const bricolage = localFont({
@@ -24,7 +25,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${bricolage.variable} ${sourceSans.variable}`}>{children}</body>
+      <body className={`${bricolage.variable} ${sourceSans.variable}`}>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,54 @@
+.stack { display: flex; min-width: 0; flex-direction: column; gap: var(--spacing-16); }
+.fullButton { width: 100%; }
+.twoColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-16); }
+.textLink, .backLink, .switchCopy a { color: var(--color-action-ghost-default); font-weight: var(--font-weight-semibold); text-decoration: none; }
+.textLink { align-self: flex-end; }
+.backLink { align-self: center; min-height: 44px; display: inline-flex; align-items: center; }
+.textLink:focus-visible, .backLink:focus-visible, .switchCopy a:focus-visible { outline: 3px solid var(--color-border-focus); outline-offset: 3px; border-radius: var(--radius-4); }
+.switchCopy, .centerCopy { margin: 0; color: var(--color-text-secondary); text-align: center; }
+.roleGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-16); }
+.roleCard { display: flex; min-height: 190px; padding: var(--spacing-20, 20px); flex-direction: column; align-items: flex-start; gap: var(--spacing-8); border: 1px solid var(--color-border-default); border-radius: var(--radius-16); color: var(--color-text-primary); background: var(--color-background-surface-default); text-align: left; cursor: pointer; }
+.roleCard:hover { border-color: var(--color-action-primary-default); background: var(--color-background-surface-subtle); }
+.roleCard[data-selected] { border: 2px solid var(--color-action-primary-default); background: var(--color-background-surface-subtle); }
+.roleCard:focus-visible { outline: 3px solid var(--color-border-focus); outline-offset: 3px; }
+.roleCard > span { font-size: 32px; }
+.roleCard strong { font-family: var(--font-family-title); font-size: var(--font-size-title-md); }
+.roleCard small { color: var(--color-text-secondary); font-size: var(--font-size-body-sm); line-height: var(--font-line-height-body-sm); }
+.emailIcon { display: grid; width: 72px; height: 72px; margin-inline: auto; place-items: center; border-radius: var(--radius-full); color: var(--color-text-primary); background: var(--color-action-primary-default); font-size: 32px; }
+.onboardingLayout { display: grid; grid-template-columns: minmax(190px, 220px) minmax(0, 1fr) minmax(220px, 260px); align-items: start; gap: var(--spacing-24); }
+.onboardingProgress, .onboardingForm, .onboardingStatus { min-width: 0; padding: var(--spacing-24); border: 1px solid var(--color-border-default); border-radius: var(--radius-12); background: var(--color-background-surface-default); }
+.onboardingProgress, .onboardingStatus { position: sticky; top: 104px; }
+.onboardingForm { padding: 0; overflow: hidden; }
+.onboardingForm > .stack { padding: var(--spacing-32, 32px); }
+.onboardingForm h2, .onboardingStatus h2 { margin: var(--spacing-4) 0 0; font-family: var(--font-family-title); font-size: var(--font-size-heading-sm); line-height: var(--font-line-height-heading-sm); }
+.stepEyebrow, .onboardingStatus > span { color: var(--color-action-primary-default); font-size: var(--font-size-label-sm); font-weight: var(--font-weight-semibold); }
+.muted { margin: var(--spacing-8) 0 0; color: var(--color-text-secondary); }
+.onboardingStatus ul { display: flex; margin: var(--spacing-20, 20px) 0; padding: 0; flex-direction: column; gap: var(--spacing-12); list-style: none; }
+.onboardingStatus li { display: flex; gap: var(--spacing-8); color: var(--color-text-secondary); }
+.onboardingStatus li strong { color: var(--color-feedback-success-text); }
+.reviewList { display: flex; flex-direction: column; gap: var(--spacing-12); }
+.reviewList > div { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-16); padding: var(--spacing-16); border-radius: var(--radius-8); background: var(--color-background-surface-muted); }
+.reviewList span { display: flex; min-width: 0; flex-direction: column; gap: var(--spacing-4); }
+.reviewList small { color: var(--color-text-secondary); }
+
+@media (max-width: 1040px) {
+  .onboardingLayout { grid-template-columns: minmax(190px, 220px) minmax(0, 1fr); }
+  .onboardingStatus { position: static; grid-column: 2; }
+}
+
+@media (max-width: 900px) {
+  .onboardingLayout { grid-template-columns: minmax(0, 1fr); }
+  .onboardingProgress { position: static; padding: 0; border: 0; grid-row: 1; }
+  .onboardingForm { grid-row: 2; }
+  .onboardingStatus { grid-column: 1; grid-row: 3; }
+}
+
+@media (max-width: 560px) {
+  .twoColumns, .roleGrid { grid-template-columns: minmax(0, 1fr); }
+  .roleCard { min-height: 150px; }
+  .onboardingLayout { gap: 0; }
+  .onboardingForm { border-right: 0; border-left: 0; border-radius: 0; }
+  .onboardingForm > .stack { padding: var(--spacing-24) var(--spacing-16); }
+  .onboardingStatus { margin-top: var(--spacing-16); border-right: 0; border-left: 0; border-radius: 0; }
+  .reviewList > div { align-items: flex-start; flex-direction: column; }
+}

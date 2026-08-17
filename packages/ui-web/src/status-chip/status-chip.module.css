@@ -1,0 +1,75 @@
+.root {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: var(--component-status-chip-gap);
+  border-radius: var(--component-status-chip-radius);
+  font-family: var(--font-family-body), sans-serif;
+  font-weight: var(--font-weight-regular);
+  white-space: nowrap;
+}
+
+.small {
+  padding: var(--component-status-chip-small-padding-block)
+    var(--component-status-chip-small-padding-inline);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+}
+
+.medium {
+  padding: var(--component-status-chip-medium-padding-block)
+    var(--component-status-chip-medium-padding-inline);
+  font-size: var(--font-size-label-md);
+  line-height: var(--font-line-height-label-md);
+}
+
+.dot {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.small .dot {
+  width: var(--component-status-chip-small-dot);
+  height: var(--component-status-chip-small-dot);
+}
+
+.medium .dot {
+  width: var(--component-status-chip-medium-dot);
+  height: var(--component-status-chip-medium-dot);
+}
+
+.available {
+  color: var(--color-status-available-text);
+  background: var(--color-status-available-background);
+}
+
+.pending {
+  color: var(--color-status-pending-text);
+  background: var(--color-status-pending-background);
+}
+
+.confirmed {
+  color: var(--color-status-confirmed-text);
+  background: var(--color-status-confirmed-background);
+}
+
+.cancelled {
+  color: var(--color-status-cancelled-text);
+  background: var(--color-status-cancelled-background);
+}
+
+.soldOut {
+  color: var(--color-status-sold-out-text);
+  background: var(--color-status-sold-out-background);
+}
+
+.verified {
+  color: var(--color-status-verified-text);
+  background: var(--color-status-verified-background);
+}
+
+@media (forced-colors: active) {
+  .root {
+    border: 1px solid CanvasText;
+  }
+}

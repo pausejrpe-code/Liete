@@ -1,0 +1,170 @@
+.pageContent {
+  width: min(100% - 32px, 1200px);
+  margin-inline: auto;
+  padding-block: var(--spacing-24) var(--spacing-48);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-8);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover { color: var(--color-action-primary-default); }
+
+.titleBlock {
+  display: flex;
+  margin-block: var(--spacing-24);
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-24);
+}
+
+.titleBlock h1,
+.titleBlock p,
+.sectionCard h2,
+.sectionCard p,
+.sectionCard h3,
+.organizerCard h2,
+.organizerCard p,
+.relatedHeader h2,
+.relatedHeader p {
+  margin: 0;
+}
+
+.titleBlock h1 {
+  margin-top: var(--spacing-8);
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-xl);
+  line-height: var(--font-line-height-title-xl);
+}
+
+.titleBlock p {
+  margin-top: var(--spacing-6);
+  color: var(--color-text-secondary);
+}
+
+.titleBadges { display: flex; flex-wrap: wrap; gap: var(--spacing-8); }
+.gallery { width: 100%; max-width: none; }
+
+.detailsLayout {
+  display: grid;
+  margin-top: var(--spacing-24);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  align-items: start;
+  gap: var(--spacing-24);
+}
+
+.mainContent { display: flex; min-width: 0; flex-direction: column; gap: var(--spacing-16); }
+
+.sectionCard,
+.bookingCard {
+  box-sizing: border-box;
+  padding: var(--spacing-24);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-12);
+  background: var(--color-background-surface-default);
+}
+
+.sectionCard h2 {
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-lg);
+  line-height: var(--font-line-height-title-lg);
+}
+
+.description { margin-top: var(--spacing-12) !important; color: var(--color-text-secondary); line-height: 1.6; }
+.supporting { margin-top: var(--spacing-8) !important; color: var(--color-text-muted); font-size: var(--font-size-body-sm); }
+
+.highlights {
+  display: grid;
+  margin: var(--spacing-20, 20px) 0 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-12);
+}
+
+.highlights div { padding: var(--spacing-12); border-radius: var(--radius-8); background: var(--color-background-surface-muted); }
+.highlights dt { color: var(--color-text-secondary); font-size: var(--font-size-label-sm); }
+.highlights dd { margin: var(--spacing-4) 0 0; font-weight: var(--font-weight-semibold); text-transform: capitalize; }
+
+.itinerary,
+.boardingList { margin: var(--spacing-20, 20px) 0 0; padding: 0; list-style: none; }
+.itinerary { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.itinerary li { display: grid; grid-template-columns: 72px 1fr; gap: var(--spacing-16); }
+.itinerary time { color: var(--color-action-primary-default); font-weight: var(--font-weight-semibold); }
+.itinerary p { margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+.boardingList { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.boardingList li { padding: var(--spacing-12); border-radius: var(--radius-8); background: var(--color-background-surface-muted); }
+
+.inclusionGrid { display: grid; margin-top: var(--spacing-20, 20px); grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--spacing-24); }
+.inclusionGrid h3 { font-size: var(--font-size-title-md); }
+.inclusionGrid ul { display: flex; margin: var(--spacing-12) 0 0; padding: 0; flex-direction: column; gap: var(--spacing-8); list-style: none; color: var(--color-text-secondary); }
+
+.organizerCard { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--spacing-16); }
+.organizerCard span { color: var(--color-action-primary-default); font-size: var(--font-size-label-sm); }
+.organizerCard p { margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+
+.bookingCard {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+.bookingCard > span,
+.bookingCard > p { color: var(--color-text-secondary); font-size: var(--font-size-body-sm); }
+.bookingCard > strong { font-family: var(--font-family-title), sans-serif; font-size: var(--font-size-title-xl); }
+.bookingTotal { display: flex; align-items: center; justify-content: space-between; padding-top: var(--spacing-16); border-top: 1px solid var(--color-border-default); }
+.bookingCard small { color: var(--color-feedback-warning-text); text-align: center; }
+
+.relatedSection { margin-top: var(--spacing-32); }
+.relatedHeader { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--spacing-16); }
+.relatedHeader h2 { font-family: var(--font-family-title), sans-serif; font-size: var(--font-size-title-xl); }
+.relatedHeader p { margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+.relatedHeader a { color: var(--color-action-primary-default); font-weight: var(--font-weight-semibold); text-decoration: none; }
+.relatedGrid { display: grid; margin-top: var(--spacing-20, 20px); grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--spacing-16); }
+.relatedGrid > * { width: 100%; max-width: none; }
+
+.mobileBooking { display: none; }
+
+@media (max-width: 960px) {
+  .detailsLayout { grid-template-columns: minmax(0, 1fr); }
+  .bookingCard { position: static; }
+  .relatedGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 680px) {
+  .pageContent { padding-block: var(--spacing-16) 112px; }
+  .titleBlock { align-items: flex-start; flex-direction: column; }
+  .titleBlock h1 { font-size: var(--font-size-title-xl); line-height: var(--font-line-height-title-xl); }
+  .sectionCard { padding: var(--spacing-16); }
+  .highlights { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .inclusionGrid, .relatedGrid { grid-template-columns: minmax(0,1fr); }
+  .organizerCard { grid-template-columns: auto 1fr; }
+  .organizerCard button { grid-column: 1 / -1; width: 100%; }
+  .bookingCard { display: none; }
+  .mobileBooking {
+    position: fixed;
+    z-index: 30;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-16);
+    padding: var(--spacing-12) var(--spacing-16) calc(var(--spacing-12) + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--color-border-default);
+    background: var(--color-background-surface-default);
+  }
+  .mobileBooking div { display: flex; flex-direction: column; }
+  .mobileBooking span { color: var(--color-text-secondary); font-size: var(--font-size-label-sm); }
+}

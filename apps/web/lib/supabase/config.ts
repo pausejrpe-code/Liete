@@ -3,15 +3,17 @@ export type SupabasePublicConfig = {
   url: string;
 };
 
-export function getSupabasePublicConfig(): SupabasePublicConfig {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const publishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+export function isSupabaseConfigured(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY &&
+    !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("seu-projeto.supabase.co")
+  );
+}
 
-  if (!url || !publishableKey) {
-    throw new Error(
-      "Supabase não configurado. Defina NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY."
-    );
-  }
+export function getSupabasePublicConfig(): SupabasePublicConfig {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder-project.supabase.co";
+  const publishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || "placeholder-anon-key";
 
   return { publishableKey, url };
 }

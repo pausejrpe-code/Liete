@@ -30,4 +30,12 @@ describe("TripCard", () => {
     );
     expect(screen.queryByText("Verificado")).not.toBeInTheDocument();
   });
+
+  it("supports a contextual action label", () => {
+    render(<TripCard actionLabel="Ver detalhes" />);
+
+    expect(
+      screen.getByRole("button", { name: "Ver detalhes" })
+    ).toBeEnabled();
+  });
 });

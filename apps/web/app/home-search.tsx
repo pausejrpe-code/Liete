@@ -13,7 +13,9 @@ export function HomeSearch({ className }: { className?: string }) {
     });
 
     const query = params.toString();
-    window.location.assign(`${withBasePath("/")}${query ? `?${query}` : ""}#viagens`);
+    window.location.assign(
+      `${withBasePath("/excursoes/")}${query ? `?${query}` : ""}`
+    );
   }
 
   return <TripSearchBar className={className} id="buscar" onSearch={handleSearch} />;

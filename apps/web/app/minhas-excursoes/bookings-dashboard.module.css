@@ -1,0 +1,33 @@
+.pageContent { width: min(100% - 32px, 1000px); margin-inline: auto; padding-block: var(--spacing-32) var(--spacing-48); }
+.header { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--spacing-24); }
+.header span { color: var(--color-action-primary-default); font-size: var(--font-size-label-sm); font-weight: var(--font-weight-semibold); }
+.header h1, .header p, .bookingHeader h2, .bookingHeader p { margin: 0; }
+.header h1 { margin-top: var(--spacing-4); font-family: var(--font-family-title),sans-serif; font-size: var(--font-size-title-xl); line-height: var(--font-line-height-title-xl); }
+.header p { margin-top: var(--spacing-8); color: var(--color-text-secondary); }
+.tabs { width: 100%; max-width: none; margin-top: var(--spacing-24); }
+.bookingList { display: flex; margin-top: var(--spacing-24); flex-direction: column; gap: var(--spacing-16); }
+.bookingCard { display: grid; min-width: 0; grid-template-columns: 260px minmax(0,1fr); overflow: hidden; border: 1px solid var(--color-border-default); border-radius: var(--radius-12); background: var(--color-background-surface-default); }
+.bookingCard > img { width: 100%; height: 100%; min-height: 240px; object-fit: cover; }
+.bookingContent { display: flex; min-width: 0; padding: var(--spacing-24); flex-direction: column; gap: var(--spacing-20,20px); }
+.bookingHeader { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: var(--spacing-16); }
+.bookingHeader > div { min-width: 0; }
+.bookingHeader span { color: var(--color-action-primary-default); font-size: var(--font-size-label-sm); font-weight: var(--font-weight-semibold); }
+.bookingHeader h2 { margin-top: var(--spacing-4); font-family: var(--font-family-title),sans-serif; font-size: var(--font-size-title-lg); }
+.bookingHeader p { margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+.bookingContent dl { display: grid; margin: 0; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--spacing-12); }
+.bookingContent dl div { padding: var(--spacing-12); border-radius: var(--radius-8); background: var(--color-background-surface-muted); }
+.bookingContent dt { color: var(--color-text-secondary); font-size: var(--font-size-label-sm); }
+.bookingContent dd { margin: var(--spacing-4) 0 0; font-weight: var(--font-weight-semibold); }
+.bookingActions { display: flex; margin-top: auto; flex-wrap: wrap; gap: var(--spacing-8); }
+.emptyState { width: 100%; max-width: none; margin-top: var(--spacing-24); }
+@media (max-width: 760px) {
+  .pageContent { padding-block: var(--spacing-20,20px); }
+  .header { align-items: stretch; flex-direction: column; }
+  .header h1 { font-size: var(--font-size-title-xl); line-height: var(--font-line-height-title-xl); }
+  .bookingCard { grid-template-columns: minmax(0,1fr); }
+  .bookingCard > img { height: 180px; min-height: 0; }
+  .bookingContent { padding: var(--spacing-16); }
+  .bookingHeader { flex-direction: column; }
+  .bookingContent dl { grid-template-columns: minmax(0,1fr); }
+  .bookingActions, .bookingActions button { width: 100%; }
+}

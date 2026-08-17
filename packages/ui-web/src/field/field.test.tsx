@@ -57,4 +57,10 @@ describe("form fields", () => {
       "decimal"
     );
   });
+
+  it("supports password inputs without changing the field contract", () => {
+    render(<Input inputType="password" label="Senha" />);
+
+    expect(screen.getByLabelText("Senha")).toHaveAttribute("type", "password");
+  });
 });

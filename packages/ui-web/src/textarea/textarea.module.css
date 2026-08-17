@@ -1,0 +1,102 @@
+.root {
+  display: flex;
+  width: min(100%, var(--component-textarea-width));
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--component-textarea-gap);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body), sans-serif;
+  font-weight: var(--font-weight-regular);
+}
+
+.label {
+  font-size: var(--font-size-label-md);
+  line-height: var(--font-line-height-label-md);
+}
+
+.control {
+  width: 100%;
+  height: var(--component-textarea-height);
+  box-sizing: border-box;
+  padding: var(--component-textarea-padding-block)
+    var(--component-textarea-padding-inline);
+  resize: none;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--component-textarea-radius);
+  outline: 0;
+  color: var(--color-text-primary);
+  background: var(--color-background-surface-default);
+  font: inherit;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--font-line-height-body-sm);
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-easing-standard),
+    background-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.control::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+.helper {
+  width: 100%;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-label-sm);
+  line-height: var(--font-line-height-label-sm);
+}
+
+.focus .control,
+.control:focus {
+  border: 2px solid var(--color-border-focus);
+  padding: calc(var(--component-textarea-padding-block) - 1px)
+    calc(var(--component-textarea-padding-inline) - 1px);
+}
+
+.control:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-background-surface-default);
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 1px;
+}
+
+.error .control,
+.error .control:focus {
+  border-color: var(--color-feedback-danger-text);
+}
+
+.error .helper {
+  color: var(--color-feedback-danger-text);
+}
+
+.disabled .label,
+.disabled .helper,
+.disabled .control,
+.disabled .control::placeholder {
+  color: var(--color-action-disabled-text);
+}
+
+.disabled .control {
+  border-color: var(--color-neutral-200);
+  background: var(--color-background-surface-muted);
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .control {
+    border-color: CanvasText;
+  }
+
+  .error .control {
+    border-color: Mark;
+  }
+
+  .disabled .control {
+    border-color: GrayText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control {
+    transition-duration: var(--motion-duration-instant);
+  }
+}

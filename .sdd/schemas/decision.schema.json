@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SDD Architectural Decision Record Schema",
+  "type": "object",
+  "required": ["id", "title", "status", "date", "decision"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^DEC-\\d{3}$" },
+    "title": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]
+    },
+    "date": { "type": "string" },
+    "decision": { "type": "string" }
+  }
+}

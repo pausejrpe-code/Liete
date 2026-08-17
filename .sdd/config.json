@@ -1,0 +1,27 @@
+{
+  "projectName": "liete-platform",
+  "version": "1.0.0",
+  "sddVersion": "1.0.0",
+  "specDir": ".spec",
+  "rulesDir": ".agents/rules",
+  "skillsDir": ".agents/skills",
+  "workflowsDir": ".agents/workflows",
+  "templatesDir": ".sdd/templates",
+  "idPrefixes": {
+    "feature": "FEAT-",
+    "change": "CHANGE-",
+    "bug": "BUG-",
+    "refactor": "REF-",
+    "requirement": "REQ-",
+    "acceptance": "AC-",
+    "task": "TASK-",
+    "test": "TEST-",
+    "decision": "DEC-"
+  },
+  "compliance": {
+    "requireAllAcceptanceCriteria": true,
+    "requireTraceabilityMatrix": true,
+    "requireZeroRegressions": true,
+    "strictArchitectureBoundaries": true
+  }
+}

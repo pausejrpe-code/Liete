@@ -1,0 +1,271 @@
+.root {
+  box-sizing: border-box;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body), sans-serif;
+}
+
+.desktopPresentation {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  background: var(--color-background-surface-default);
+}
+
+.desktopHeader {
+  display: flex;
+  min-height: 24px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.desktopHeader strong,
+.mobileHeader strong {
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-title-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-title-md);
+}
+
+.desktopHeader span {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-label-md);
+  line-height: var(--font-line-height-label-md);
+}
+
+.desktopSteps {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  list-style: none;
+}
+
+.desktopSteps li {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stepContent {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.indicator {
+  display: inline-flex;
+  width: var(--component-flow-stepper-indicator-size);
+  height: var(--component-flow-stepper-indicator-size);
+  box-sizing: border-box;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-color-border-default);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  background: var(--color-color-border-default);
+  font-size: var(--font-size-label-md);
+  line-height: var(--font-line-height-label-md);
+}
+
+.stepLabel {
+  min-width: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-label-md);
+  line-height: var(--font-line-height-label-md);
+}
+
+.connector {
+  width: var(--component-flow-stepper-connector-width);
+  height: var(--component-flow-stepper-connector-height);
+  flex: 0 0 var(--component-flow-stepper-connector-height);
+  margin-left: calc(
+    var(--component-flow-stepper-indicator-size) / 2 -
+      var(--component-flow-stepper-connector-width) / 2
+  );
+  background: var(--color-color-border-default);
+}
+
+.desktopSteps li[data-state="current"] .indicator {
+  border-color: var(--color-action-primary-default);
+  color: var(--color-action-primary-text);
+  background: var(--color-action-primary-default);
+}
+
+.desktopSteps li[data-state="current"] .stepLabel {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.desktopSteps li[data-state="complete"] .indicator {
+  border-color: var(--color-feedback-success-background);
+  color: var(--color-feedback-success-text);
+  background: var(--color-feedback-success-background);
+}
+
+.desktopSteps li[data-state="complete"] .stepLabel {
+  color: var(--color-feedback-success-text);
+}
+
+.connector[data-complete] {
+  background: var(--color-feedback-success-text);
+}
+
+.mobilePresentation {
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-24);
+  padding: var(--spacing-16);
+  background: var(--color-color-bg-page);
+}
+
+.mobileHeader {
+  display: flex;
+  width: 100%;
+  min-height: 24px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+}
+
+.mobileHeader button,
+.mobileHeaderSpacer {
+  width: var(--component-flow-stepper-mobile-header-icon-size);
+  height: var(--component-flow-stepper-mobile-header-icon-size);
+  flex: none;
+}
+
+.mobileHeader button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin: -10px;
+  padding: 10px;
+  border: 0;
+  border-radius: var(--radius-8);
+  color: var(--color-text-primary);
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+
+.mobileHeader button img {
+  display: block;
+  width: var(--component-flow-stepper-mobile-header-icon-size);
+  height: var(--component-flow-stepper-mobile-header-icon-size);
+}
+
+.mobileHeader button:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.mobileHeader strong {
+  min-width: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileProgress {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.mobileProgress > span {
+  height: var(--component-flow-stepper-mobile-track-height);
+  flex: 1 1 0;
+  border-radius: var(--radius-full);
+  background: var(--color-color-border-default);
+}
+
+.mobileProgress > span[data-complete] {
+  background: var(--color-action-primary-default);
+}
+
+.mobileMeta {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+  font-size: var(--font-size-label-md);
+  line-height: var(--font-line-height-label-md);
+}
+
+.mobileMeta strong {
+  min-width: 0;
+  font-weight: var(--font-weight-regular);
+  overflow-wrap: anywhere;
+}
+
+.mobileMeta span {
+  flex: none;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.mobile .desktopPresentation {
+  display: none;
+}
+
+.mobile .mobilePresentation {
+  display: flex;
+}
+
+@media (max-width: 900px) {
+  .responsive .desktopPresentation {
+    display: none;
+  }
+
+  .responsive .mobilePresentation {
+    display: flex;
+  }
+}
+
+@media (max-width: 359px) {
+  .mobilePresentation {
+    gap: var(--spacing-16);
+    padding-inline: var(--spacing-12);
+  }
+
+  .mobileMeta {
+    font-size: var(--font-size-label-sm);
+    line-height: var(--font-line-height-label-sm);
+  }
+}
+
+@media (forced-colors: active) {
+  .indicator,
+  .connector,
+  .mobileProgress > span {
+    border-color: CanvasText;
+  }
+
+  .connector,
+  .mobileProgress > span {
+    background: CanvasText;
+  }
+
+  .desktopSteps li[data-state="current"] .indicator,
+  .desktopSteps li[data-state="complete"] .indicator,
+  .connector[data-complete],
+  .mobileProgress > span[data-complete] {
+    color: HighlightText;
+    background: Highlight;
+  }
+}

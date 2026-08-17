@@ -1,0 +1,37 @@
+.pageContent { width: min(100% - 32px,1100px); margin-inline: auto; padding-block: var(--spacing-24) var(--spacing-48); }
+.breadcrumb { display: flex; gap: var(--spacing-8); color: var(--color-text-secondary); font-size: var(--font-size-body-sm); }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.header { display: flex; margin-block: var(--spacing-24); align-items: flex-end; justify-content: space-between; gap: var(--spacing-24); }
+.header span { color: var(--color-action-primary-default); font-size: var(--font-size-label-sm); font-weight: var(--font-weight-semibold); }
+.header h1, .header p, .tripCard h2, .card h2, .card p, .voucherCard h2, .voucherCard p, .paymentCard h2 { margin: 0; }
+.header h1 { margin-top: var(--spacing-4); font-family: var(--font-family-title),sans-serif; font-size: var(--font-size-title-xl); }
+.header p { margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+.layout { display: grid; margin-top: var(--spacing-16); grid-template-columns: minmax(0,1fr) minmax(280px,340px); align-items: start; gap: var(--spacing-24); }
+.mainColumn, .sideColumn { display: flex; min-width: 0; flex-direction: column; gap: var(--spacing-16); }
+.tripCard, .card, .voucherCard, .paymentCard { overflow: hidden; border: 1px solid var(--color-border-default); border-radius: var(--radius-12); background: var(--color-background-surface-default); }
+.tripCard { display: grid; grid-template-columns: 220px minmax(0,1fr); }
+.tripCard > img { width: 100%; height: 100%; min-height: 230px; object-fit: cover; }
+.tripCard > div, .card, .voucherCard, .paymentCard { padding: var(--spacing-20,20px); }
+.tripCard h2, .card h2, .voucherCard h2, .paymentCard h2 { font-family: var(--font-family-title),sans-serif; font-size: var(--font-size-title-lg); }
+.tripCard dl, .paymentCard dl { display: flex; margin: var(--spacing-16) 0 0; flex-direction: column; gap: var(--spacing-10); }
+.tripCard dl div, .paymentCard dl div { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--spacing-16); }
+.tripCard dt, .tripCard dd, .paymentCard dt, .paymentCard dd { margin: 0; }
+.tripCard dt, .paymentCard dt { color: var(--color-text-secondary); }
+.tripCard dd, .paymentCard dd { text-align: right; }
+.card > ul { margin: var(--spacing-16) 0 0; padding: 0; list-style: none; }
+.card > ul:not(.participants) li { padding: var(--spacing-12); border-radius: var(--radius-8); background: var(--color-background-surface-muted); }
+.participants { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.participants li { display: flex; flex-direction: column; gap: var(--spacing-2); padding-block: var(--spacing-8); border-bottom: 1px solid var(--color-border-default); }
+.participants li:last-child { border: 0; }
+.participants span, .card p { color: var(--color-text-secondary); font-size: var(--font-size-body-sm); }
+.card p { margin-top: var(--spacing-8); }
+.card button { margin-top: var(--spacing-12); }
+.voucherHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--spacing-12); }
+.voucherHeader > div > span { color: var(--color-text-secondary); font-size: var(--font-size-label-sm); }
+.qrCode { display: grid; width: 180px; aspect-ratio: 1; margin: var(--spacing-20,20px) auto; place-items: center; border: 12px solid var(--color-text-primary); background: repeating-conic-gradient(var(--color-text-primary) 0 25%,var(--color-background-surface-default) 0 50%) 50% / 24px 24px; }
+.qrCode span { padding: var(--spacing-4); color: var(--color-text-primary); background: var(--color-background-surface-default); font-size: 10px; font-weight: var(--font-weight-bold); }
+.voucherCard p { color: var(--color-text-secondary); font-size: var(--font-size-body-sm); text-align: center; }
+.total { padding-top: var(--spacing-12); border-top: 1px solid var(--color-border-default); font-weight: var(--font-weight-semibold); }
+.cancelAction { width: 100%; }
+@media (max-width: 820px) { .layout { grid-template-columns: minmax(0,1fr); } .sideColumn { grid-row: 1; } }
+@media (max-width: 620px) { .header { align-items: flex-start; flex-direction: column; } .tripCard { grid-template-columns: minmax(0,1fr); } .tripCard > img { height: 170px; min-height: 0; } }

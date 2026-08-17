@@ -1,0 +1,102 @@
+.root {
+  display: flex;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  border-radius: var(--radius-12);
+  background: var(--color-background-surface-default);
+}
+
+.regular {
+  width: var(--component-goal-progress-width-regular);
+  padding: var(--spacing-24);
+}
+
+.compact {
+  width: var(--component-goal-progress-width-compact);
+  padding: var(--spacing-16);
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  min-height: 22px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-label-md);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ratio {
+  flex: 0 0 auto;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-title), sans-serif;
+  font-size: var(--font-size-highlight-md);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--font-letter-spacing-default);
+  line-height: var(--font-line-height-highlight-md);
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: var(--component-goal-progress-track-height);
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--color-background-surface-muted);
+}
+
+.bar {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: inherit;
+  background: var(--color-action-primary-default);
+  transition: width var(--motion-duration-normal) var(--motion-easing-standard);
+}
+
+.supporting {
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-body-sm);
+  overflow-wrap: anywhere;
+}
+
+.complete .ratio,
+.complete .supporting {
+  color: var(--color-status-confirmed-text);
+}
+
+.complete .bar {
+  background: var(--color-status-confirmed-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .track {
+    border: 1px solid CanvasText;
+  }
+}

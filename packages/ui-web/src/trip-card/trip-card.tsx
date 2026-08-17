@@ -11,6 +11,7 @@ export type TripCardAvailability = "available" | "sold-out";
 export type TripCardLayout = "vertical" | "compact";
 
 export type TripCardProps = Omit<HTMLAttributes<HTMLElement>, "title"> & {
+  actionLabel?: string;
   availability?: TripCardAvailability;
   departure?: string;
   imageAlt?: string;
@@ -27,6 +28,7 @@ export type TripCardProps = Omit<HTMLAttributes<HTMLElement>, "title"> & {
 };
 
 export function TripCard({
+  actionLabel = "Reservar",
   availability = "available",
   className,
   departure = "Saída: Terminal Tietê · 24 ago · 06:00",
@@ -84,7 +86,7 @@ export function TripCard({
             <strong>{price}</strong>
           </div>
           <Button disabled={isSoldOut} onClick={onReserve} size="sm">
-            {isSoldOut ? "Esgotado" : "Reservar"}
+            {isSoldOut ? "Esgotado" : actionLabel}
           </Button>
         </div>
       </div>
